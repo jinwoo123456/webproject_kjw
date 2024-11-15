@@ -1,11 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" import="com.example.model.DataSourceConfig
-javax.sql.DataSource java.sql.Connection" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> <%@ page
+import="java.sql.Connection, javax.sql.DataSource,
+com.example.model.DataSourceConfig" %>
 
 <html>
-  <head>
-    <title>데이터베이스 연결 테스트</title>
-  </head>
   <body>
     <h2>데이터베이스 연결 테스트</h2>
     <% try { DataSource dataSource = DataSourceConfig.getDataSource(); try

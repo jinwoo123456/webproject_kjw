@@ -23,7 +23,6 @@ public class DataSourceConfig {
             config.setUsername(properties.getProperty("jdbc.username"));
             config.setPassword(properties.getProperty("jdbc.password"));
             config.setDriverClassName(properties.getProperty("jdbc.driverClassName"));
-            config.setMaximumPoolSize(Integer.parseInt(properties.getProperty("maximumPoolSize")));
 
             dataSource = new HikariDataSource(config);
         } catch (IOException e) {
