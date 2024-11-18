@@ -3,6 +3,7 @@ package com.example.controller;
 import java.io.IOException;
 
 import com.example.model.MemberDAO;
+import com.example.model.MemberDTO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,7 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("views/login.do")
+@WebServlet("/views/login.do")
 public class LoginServlet extends HttpServlet {
     
     
@@ -28,10 +29,24 @@ public class LoginServlet extends HttpServlet {
          * 서블릿 컨텍스트를 사용하여 MemberDAO 인스턴스를 생성합니다.
          * MemberDAO 객체는 회원 데이터베이스와 상호 작용하는 데 사용됩니다.
          */
-        MemberDAO dao = new MemberDAO(getServletContext());
-        String id = req.getParameter("id");
+         String id = req.getParameter("id");
         String pw = req.getParameter("pw");
-        
+
+        // ServletContext 객체를 사용하여 MemberDAO 생성
+        MemberDAO dao = new MemberDAO(getServletContext());
+        MemberDTO member = dao.login(id, pw);
+
+        if (member != null) {
+            // 로그인 성공
+            req.getSession().setAttribute("UserId", member.getId());
+            req.getSession().setAttribute("UserName", member.getName());
+            resp.sendRedirect("welcome.jsp"); // 로그인 성공 후 이동할 페이지
+        } else {
+            // 로그인 실패
+            req.setAttribute("errorMessage", "아이디 또는 비밀번호가 일치하지 않습니다.");
+            req.getRequestDispatcher("login.jsp").forward(req, resp);
+        }
+    }
 
 
        
@@ -43,7 +58,7 @@ public class LoginServlet extends HttpServlet {
 
         
     }
-}
+
 
 
 /*

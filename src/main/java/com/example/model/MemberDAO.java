@@ -61,24 +61,27 @@ public class MemberDAO extends JDBConnect {//JDBC를 위한 클래스를 상속�
     public MemberDTO getMemberDTO(String id, String pw,String email,String name,int pnum,String hdate) {
         MemberDTO dto = new MemberDTO();
         try {
-            String query = "SELECT id, pw, email, name, pnum, hdate FROM member WHERE id=? AND pw=?"; // SQL 쿼리문 정의
+            String query = "SELECT ID, PASSWORD, EMAIL, NAME, PHONE_NUMBER, HIRE_DATE FROM MEMBER WHERE ID=? AND PASSWORD=?"; // SQL 쿼리문 정의
             psmt = con.prepareStatement(query); // PreparedStatement 객체 생성
             psmt.setString(1, id); // 첫 번째 매개변수에 id 설정
             psmt.setString(2, pw); // 두 번째 매개변수에 pw 설정
             rs = psmt.executeQuery(); // 쿼리 실행 및 결과 반환
             if(rs.next()) { // 결과가 존재하면
-                dto.setId(rs.getString(1)); // ID 설정
-                dto.setPw(rs.getString(2)); // 비밀번호 설정
-                dto.setEmail(rs.getString(3)); // 이메일 설정
-                dto.setName(rs.getString(4)); // 이름 설정
-                dto.setPnum(rs.getInt(5)); // 전화번호 설정
-                dto.setHdate(rs.getString(6)); // 가입일 설정
+                dto.setId(rs.getString("ID")); // ID 설정
+                dto.setPw(rs.getString("PASSWORD")); // 비밀번호 설정
+                dto.setEmail(rs.getString("EMAIL")); // 이메일 설정
+                dto.setName(rs.getString("NAME")); // 이름 설정
+                dto.setPnum(rs.getInt("PHONE_NUMBER")); // 전화번호 설정
+                dto.setHdate(rs.getString("HIRE_DATE")); // 가입일 설정
                 System.out.println("DAO ~ DTO Connect - 70line success");
             }
         }
-        catch (Exception e) { // 예외 처리
-            e.printStackTrace(); // 스택 트레이스 출력]
-            System.out.println("DAO - 75line error");
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("SQL error - MemberDAO - login");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("General error - MemberDAO - login");
         }
         return dto; // MemberDTO 객체 반환
     }
@@ -100,19 +103,19 @@ public class MemberDAO extends JDBConnect {//JDBC를 위한 클래스를 상속�
      */
     public MemberDTO login(String id, String pw) {
         MemberDTO dto = null; // MemberDTO 객체를 null로 초기화
-        String query = "SELECT id, pw, email, name, pnum, hdate FROM member WHERE id=? AND pw=?"; // SQL 쿼리문 정의
+        String query = "SELECT ID, PASSWORD, EMAIL, NAME, PHONE_NUMBER, HIRE_DATE FROM member WHERE id=? AND PASSWORD=?"; // SQL 쿼리문 정의
         try (PreparedStatement psmt = con.prepareStatement(query)) { // try-with-resources를 사용하여 PreparedStatement 객체 생성
             psmt.setString(1, id); // 첫 번째 매개변수에 id 설정
             psmt.setString(2, pw); // 두 번째 매개변수에 pw 설정
             try (ResultSet rs = psmt.executeQuery()) { // try-with-resources를 사용하여 ResultSet 객체 생성
                 if (rs.next()) { // 결과가 존재하면
                     dto = new MemberDTO(); // 새로운 MemberDTO 객체 생성
-                    dto.setId(rs.getString("id")); // ID 설정
-                    dto.setPw(rs.getString("pw")); // 비밀번호 설정
-                    dto.setEmail(rs.getString("email")); // 이메일 설정
-                    dto.setName(rs.getString("name")); // 이름 설정
-                    dto.setPnum(rs.getInt("pnum")); // 전화번호 설정
-                    dto.setHdate(rs.getString("hdate")); // 가입일 설정
+                    dto.setId(rs.getString("ID")); // ID 설정
+                    dto.setPw(rs.getString("PASSWORD")); // 비밀번호 설정
+                    dto.setEmail(rs.getString("EMAIL")); // 이메일 설정
+                    dto.setName(rs.getString("NAME")); // 이름 설정
+                    dto.setPnum(rs.getInt("PHONE_NUMBER")); // 전화번호 설정
+                    dto.setHdate(rs.getString("HIRE_DATE")); // 가입일 설정
                 }
             }
         } catch (Exception e) { // 예외 처리
