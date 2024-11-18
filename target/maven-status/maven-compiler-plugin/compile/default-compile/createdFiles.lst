@@ -1,3 +1,4 @@
+com\example\controller\LoginServlet.class
 com\example\model\board\FileBoardDTO.class
 com\example\model\MemberDAO.class
 com\example\model\board\FreeBoardDTO.class
@@ -6,5 +7,5 @@ com\example\utils\Test.class
 com\example\model\DataSourceConfig.class
 com\example\model\board\FIleBoardDAO.class
 com\example\model\board\QABoardDAO.class
+com\example\model\JDBConnect.class
 com\example\model\board\QABoardDTO.class
-com\example\model\DBtest.class

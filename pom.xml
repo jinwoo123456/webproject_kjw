@@ -15,6 +15,7 @@
     <java.version>21</java.version>
   </properties>
 
+
   <dependencies>
     
       <!-- JUnit (테스트용) -->
@@ -24,6 +25,13 @@
         <version>3.8.1</version>
         <scope>test</scope>
       </dependency>
+      
+      <!-- Oracle JDBC Driver -->
+      <dependency>
+        <groupId>com.oracle.database.jdbc</groupId>
+        <artifactId>ojdbc11</artifactId>
+        <version>23.6.0.24.10</version>
+    </dependency>
   
       <!-- Servlet API (Tomcat 10.x 호환, Jakarta Servlet API 5.0) -->
       <dependency>
@@ -60,13 +68,6 @@
         <scope>provided</scope>
       </dependency>
   
-      <!-- Oracle JDBC Driver -->
-      <dependency>
-          <groupId>com.oracle.database.jdbc</groupId>
-          <artifactId>ojdbc11</artifactId>
-          <version>21.3.0.0</version>
-      </dependency>
-  
       <!-- SLF4J 및 간단한 로그 구현체 -->
       <dependency>
         <groupId>org.slf4j</groupId>
@@ -78,6 +79,7 @@
         <artifactId>slf4j-simple</artifactId>
         <version>2.0.9</version>
     </dependency>
+      
   </dependencies>
   
   <build>
@@ -92,6 +94,16 @@
           <release>21</release>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+            <url>http://localhost:8586/manager/text</url>
+            <server>TomcatServer</server>
+            <path>/WebProject_KJW</path>
+        </configuration>
+    </plugin>
 
       <!-- Maven WAR Plugin -->
       <plugin>
