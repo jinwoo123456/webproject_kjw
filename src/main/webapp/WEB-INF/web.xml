@@ -13,12 +13,10 @@
 	<display-name>WebProject_KJW</display-name>
 
 	<!-- 웹애플리케이션 실행시 제일 먼저 실행할 파일 지정 -->
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-	
-	</welcome-file-list>
+	<!-- <welcome-file-list>
+		<welcome-file>views/login.jsp</welcome-file>
+		<welcome-file>board/free_board.jsp</welcome-file>
+	</welcome-file-list> -->
 	<!-- 컨텍스트 초기화 매개변수(예제 2-10) -->
 	<!-- 웹 애플리케이션 전체에서 접근해서 사용할 수 있는 일종의 상수값 혹은 설정값으로 사용할 수 있다. -->
 	<context-param>

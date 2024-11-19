@@ -40,7 +40,9 @@ public class LoginServlet extends HttpServlet {
             // 로그인 성공
             req.getSession().setAttribute("UserId", member.getId());
             req.getSession().setAttribute("UserName", member.getName());
-            resp.sendRedirect("welcome.jsp"); // 로그인 성공 후 이동할 페이지
+            req.getRequestDispatcher("file_board.jsp").forward(req, resp); // 로그인 성공 후 이동할 페이지
+
+
         } else {
             // 로그인 실패
             req.setAttribute("errorMessage", "아이디 또는 비밀번호가 일치하지 않습니다.");

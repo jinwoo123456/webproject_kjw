@@ -33,20 +33,7 @@ public class MemberDAO extends JDBConnect {//JDBC를 위한 클래스를 상속�
      * @throws SQLException 데이터베이스 접근 오류가 발생한 경우
      * @throws NullPointerException 데이터베이스 연결 객체가 null인 경우
      */
-    /**
-     * Retrieves a MemberDTO object containing member information from the database.
-     *
-     * @param id The member's ID.
-     * @param pw The member's password.
-     * @return A MemberDTO object populated with the member's information if found, otherwise an empty MemberDTO object.
-     */
-    /**
-     * Retrieves a MemberDTO object from the database based on the provided id and password.
-     *
-     * @param id The ID of the member to retrieve.
-     * @param pw The password of the member to retrieve.
-     * @return A MemberDTO object containing the member's details if found, otherwise an empty MemberDTO object.
-     */
+   
 
 
     /*
@@ -60,8 +47,8 @@ public class MemberDAO extends JDBConnect {//JDBC를 위한 클래스를 상속�
      */
     public MemberDTO getMemberDTO(String id, String pw,String email,String name,int pnum,String hdate) {
         MemberDTO dto = new MemberDTO();
+        String query = "INSERT INTO member (ID, PASSWORD, EMAIL, NAME, PHONE_NUMBER, HIRE_DATE) VALUES (?, ?, ?, ?, ?, ?)"; // SQL 쿼리문 정의, 수정된 부분
         try {
-            String query = "SELECT ID, PASSWORD, EMAIL, NAME, PHONE_NUMBER, HIRE_DATE FROM MEMBER WHERE ID=? AND PASSWORD=?"; // SQL 쿼리문 정의
             psmt = con.prepareStatement(query); // PreparedStatement 객체 생성
             psmt.setString(1, id); // 첫 번째 매개변수에 id 설정
             psmt.setString(2, pw); // 두 번째 매개변수에 pw 설정
@@ -72,7 +59,7 @@ public class MemberDAO extends JDBConnect {//JDBC를 위한 클래스를 상속�
                 dto.setEmail(rs.getString("EMAIL")); // 이메일 설정
                 dto.setName(rs.getString("NAME")); // 이름 설정
                 dto.setPnum(rs.getInt("PHONE_NUMBER")); // 전화번호 설정
-                dto.setHdate(rs.getString("HIRE_DATE")); // 가입일 설정
+                dto.setHdate(rs.getDate("HIRE_DATE")); // 가입일 설정
                 System.out.println("DAO ~ DTO Connect - 70line success");
             }
         }
@@ -115,7 +102,7 @@ public class MemberDAO extends JDBConnect {//JDBC를 위한 클래스를 상속�
                     dto.setEmail(rs.getString("EMAIL")); // 이메일 설정
                     dto.setName(rs.getString("NAME")); // 이름 설정
                     dto.setPnum(rs.getInt("PHONE_NUMBER")); // 전화번호 설정
-                    dto.setHdate(rs.getString("HIRE_DATE")); // 가입일 설정
+                    dto.setHdate(rs.getDate("HIRE_DATE")); // 가입일 설정
                 }
             }
         } catch (Exception e) { // 예외 처리
@@ -123,6 +110,41 @@ public class MemberDAO extends JDBConnect {//JDBC를 위한 클래스를 상속�
             System.out.println("error - MemberDAO - login line91"); // 에러 메시지 출력
         }
         return dto; // MemberDTO 객체 반환
+    }
+    /*
+     * member테이블 열
+     * 
+    /*
+    ID , PASSWORD, EMAIL, NAME, PHONE_NUMBER, HIRE_DATE
+     
+     * 
+     */
+   
+    public int join(MemberDTO dto) {
+        int result = 0; // 결과를 저장할 변수를 0으로 초기화
+        String query = "INSERT INTO member (ID, PASSWORD, EMAIL, NAME, PHONE_NUMBER, HIRE_DATE) VALUES (?, ?, ?, ?, ?, ?)"; // SQL 쿼리문 정의, 수정된 부분
+        try (PreparedStatement psmt = con.prepareStatement(query)) { // try-with-resources를 사용하여 PreparedStatement 객체 생성
+            psmt.setString(1, dto.getId()); // 첫 번째 매개변수에 ID 설정
+           
+            psmt.setString(2, dto.getPw()); // 두 번째 매개변수에 비밀번호 설정
+            psmt.setString(3, dto.getEmail()); // 세 번째 매개변수에 이메일 설정
+            psmt.setString(4, dto.getName()); // 네 번째 매개변수에 이름 설정
+            psmt.setInt(5, dto.getPnum()); // 다섯 번째 매개변수에 전화번호 설정
+            psmt.setDate(6, dto.getHdate()); // 여섯 번째 매개변수에 가입일 설정
+            System.out.println("===============================================/////");
+            System.out.println(dto.getId());
+            System.out.println(dto.getPw());
+            System.out.println(dto.getEmail());
+            System.out.println(dto.getName());
+            System.out.println(dto.getPnum());
+            System.out.println(dto.getHdate());
+            System.out.println("===============================================/////");
+            result = psmt.executeUpdate(); // 쿼리 실행 및 결과 반환
+        } catch (Exception e) { // 예외 처리
+            e.printStackTrace(); // 스택 트레이스 출력
+            System.out.println("error - MemberDAO - join line110"); // 에러 메시지 출력
+        }
+        return result; // 결과 반환
     }
  
 }

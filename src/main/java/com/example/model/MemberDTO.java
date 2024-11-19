@@ -1,4 +1,7 @@
 package com.example.model;
+
+import java.sql.Date;
+
 /*
 테이블 
 ID	VARCHAR2(20 BYTE)	
@@ -14,7 +17,12 @@ private String pw;
 private String email;
 private String name;
 private int pnum;
-private String hdate;
+private Date hdate;
+
+// public MemberDTO() {
+//     this.hdate = new Date(System.currentTimeMillis());
+// }
+
 
 
 public String getId() {
@@ -57,11 +65,14 @@ public void setPnum(int pnum) {
     this.pnum = pnum;
 }
 
-public String getHdate() {
+public Date getHdate() {
     return hdate;
 }
 
-public void setHdate(String hdate) {
+public void setHdate(Date hdate) {
     this.hdate = hdate;
 }
+
+
+
 }
