@@ -62,7 +62,17 @@ pageEncoding="UTF-8"%>
                           method="GET"
                           onsubmit="return validateForm(this);"
                           >
-            <button type="submit" class="button is-light" > 로그아웃 </button></form>
+            <button type="submit" class="button is-light" > 로그아웃 </button>
+            
+            </form>
+            <form
+            name="memberUpdateFrm"
+            action="memberUpdate.jsp"
+            method="GET"
+           onsubmit="return validateForm(this);"
+            >
+            <button type="submit" class="button is-light" > 정보 수정 </button>
+            </form>
             </div>
         </c:when>
         <c:otherwise>

@@ -40,6 +40,9 @@ public class LoginServlet extends HttpServlet {
             // 로그인 성공
             req.getSession().setAttribute("UserId", member.getId());
             req.getSession().setAttribute("UserName", member.getName());
+            req.getSession().setAttribute("UserPw", member.getPw());
+            req.getSession().setAttribute("UserEmail", member.getEmail());
+            req.getSession().setAttribute("UserPnum", member.getPnum());
             req.getRequestDispatcher("file_board.jsp").forward(req, resp); // 로그인 성공 후 이동할 페이지
 
 

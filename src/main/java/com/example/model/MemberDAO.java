@@ -131,18 +131,52 @@ public class MemberDAO extends JDBConnect {//JDBC를 위한 클래스를 상속�
             psmt.setString(4, dto.getName()); // 네 번째 매개변수에 이름 설정
             psmt.setInt(5, dto.getPnum()); // 다섯 번째 매개변수에 전화번호 설정
             psmt.setDate(6, dto.getHdate()); // 여섯 번째 매개변수에 가입일 설정
-            System.out.println("===============================================/////");
-            System.out.println(dto.getId());
-            System.out.println(dto.getPw());
-            System.out.println(dto.getEmail());
-            System.out.println(dto.getName());
-            System.out.println(dto.getPnum());
-            System.out.println(dto.getHdate());
-            System.out.println("===============================================/////");
             result = psmt.executeUpdate(); // 쿼리 실행 및 결과 반환
+            System.out.println("=======================회원가입값====================/////");
+            System.out.println("dto.id    "+dto.getId());
+            System.out.println("dto.pw    "+dto.getPw());
+            System.out.println("dto.email    "+dto.getEmail());
+            System.out.println("dto.name    "+dto.getName());
+            System.out.println("dto.pnum    "+dto.getPnum());
+            System.out.println("dto.hdate    "+dto.getHdate());
+            System.out.println("===============================================/////");
         } catch (Exception e) { // 예외 처리
             e.printStackTrace(); // 스택 트레이스 출력
             System.out.println("error - MemberDAO - join line110"); // 에러 메시지 출력
+        }
+        return result; // 결과 반환
+    }
+
+
+
+
+
+
+    public int update(MemberDTO dto) {
+        int result = 0; // 결과를 저장할 변수를 0으로 초기화
+        String query = "UPDATE MEMBER SET PASSWORD=?, EMAIL=?, NAME=?, PHONE_NUMBER=? WHERE ID=?";
+         // SQL 쿼리문 정의, 수정된 부분
+        try (PreparedStatement psmt = con.prepareStatement(query)) { // try-with-resources를 사용하여 PreparedStatement 객체 생성
+            psmt.setString(1, dto.getPw()); // 1 번째 매개변수에 비밀번호 설정
+            psmt.setString(2, dto.getEmail()); // 2 번째 매개변수에 이메일 설정
+            psmt.setString(3, dto.getName()); // 3 번째 매개변수에 이름 설정
+            psmt.setInt(4, dto.getPnum()); // 4 번째 매개변수에 전화번호 설정
+            psmt.setString(5, dto.getId()); // 5 번째 매개변수에 ID 설정
+           // 여섯 번째 매개변수에 가입일 설정
+           result = psmt.executeUpdate(); // 쿼리 실행 및 결과 반환
+           System.out.println("update line 167");
+            System.out.println("====================dao update method====================/////");
+           System.out.println("dto.id     "+dto.getId());
+            System.out.println("dto.pw     "+dto.getPw());
+            System.out.println("dto.email     "+dto.getEmail());
+            System.out.println("dto.name     "+dto.getName());
+            System.out.println("dto.pnum     "+dto.getPnum());
+            
+            System.out.println("===============================================/////");
+            System.out.println("dao.update success");
+        } catch (Exception e) { // 예외 처리
+            e.printStackTrace(); // 스택 트레이스 출력
+            System.out.println("error - MemberDAO - update line174"); // 에러 메시지 출력
         }
         return result; // 결과 반환
     }

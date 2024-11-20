@@ -1,6 +1,8 @@
 com\example\controller\JoinServlet.class
+com\example\utils\JSFunction.class
 com\example\model\board\FileBoardDTO.class
 com\example\model\board\FreeBoardDAO.class
+com\example\controller\MemberUpdateServlet.class
 com\example\model\MemberDTO.class
 com\example\utils\Test.class
 com\example\controller\LogoutServlet.class
