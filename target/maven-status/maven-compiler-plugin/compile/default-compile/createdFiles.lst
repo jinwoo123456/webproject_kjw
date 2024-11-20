@@ -1,5 +1,6 @@
 com\example\controller\JoinServlet.class
 com\example\utils\JSFunction.class
+com\example\controller\FreeBoardWriteServlet.class
 com\example\model\board\FileBoardDTO.class
 com\example\model\board\FreeBoardDAO.class
 com\example\controller\MemberUpdateServlet.class

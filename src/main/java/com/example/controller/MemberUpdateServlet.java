@@ -25,7 +25,6 @@ public class MemberUpdateServlet extends HttpServlet {
         String email = req.getParameter("email"); // 클라이언트로부터 email 데이터를 가져옵니다.
         String name = req.getParameter("name"); // 클라이언트로부터 name 데이터를 가져옵니다.
         int pnum = Integer.parseInt(req.getParameter("pnum")); // 클라이언트로부터 pnum 데이터를 가져와서 정수로 변환합니다.
-        
 
 
 

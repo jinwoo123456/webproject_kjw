@@ -79,7 +79,7 @@ pageEncoding="UTF-8"%>
             <!-- 비로그인 상태 -->
             <div class="buttons">
                 <a class="button is-primary">
-                    <strong> ${UserId}회원가입 </strong>
+                    <strong>  회원가입 </strong>
                 </a>
                 <a class="button is-light" href="./login.jsp"> 로그인 </a>
             </div>
@@ -122,9 +122,12 @@ pageEncoding="UTF-8"%>
               <li><a href="../views/qa_board.jsp">QA게시판</a></li>
               <li><a href="../views/file_board.jsp">자료실게시판</a></li>
               <li><a>인기 순위</a></li>
-              <button class="tabs_btn">글쓰기</button>
+              <button class="tabs_btn"><a href="../views/free_board_write.jsp">글쓰기</a></button>
             </ul>
           </div>
+
+
+          <%--===================================== 게시판 글폼================================== --%>
           <div class="box forum">
             <article class="media">
               <div class="media-left">
@@ -354,6 +357,7 @@ pageEncoding="UTF-8"%>
               </div>
             </article>
           </div>
+          <%--===================================== 게시판 글폼================================== --%>
           <div class="box">
             <nav
               class="pagination is-rounded"

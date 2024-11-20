@@ -24,15 +24,6 @@ public class MemberDAO extends JDBConnect {//JDBC를 위한 클래스를 상속�
     }
     
   
-    /**
-     * 주어진 ID와 비밀번호를 사용하여 데이터베이스에서 회원 정보를 조회합니다.
-     *
-     * @param id 조회할 회원의 ID
-     * @param pw 조회할 회원의 비밀번호
-     * @return 조회된 회원 정보를 담고 있는 MemberDTO 객체
-     * @throws SQLException 데이터베이스 접근 오류가 발생한 경우
-     * @throws NullPointerException 데이터베이스 연결 객체가 null인 경우
-     */
    
 
 
@@ -79,15 +70,7 @@ public class MemberDAO extends JDBConnect {//JDBC를 위한 클래스를 상속�
      * @param pw 조회할 회원의 비밀번호
      * @return 조회된 회원 정보를 담고 있는 MemberDTO 객체
      */
-    /**
-     * Authenticates a user by their ID and password.
-     *
-     * @param id the user's ID
-     * @param pw the user's password
-     * @return a MemberDTO object containing the user's details if authentication is successful, null otherwise
-     * @throws SQLException if a database access error occurs
-     * @throws NullPointerException if the connection object is null
-     */
+    
     public MemberDTO login(String id, String pw) {
         MemberDTO dto = null; // MemberDTO 객체를 null로 초기화
         String query = "SELECT ID, PASSWORD, EMAIL, NAME, PHONE_NUMBER, HIRE_DATE FROM member WHERE id=? AND PASSWORD=?"; // SQL 쿼리문 정의
