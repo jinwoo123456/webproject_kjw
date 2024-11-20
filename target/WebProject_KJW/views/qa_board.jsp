@@ -1,6 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>  
 
-<!DOCTYPE html><html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,12 +19,12 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    <% out.println("Hello World"); %>
+  
     <nav class="navbar forum" role="navigation" aria-label="main navigation">
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item" href="">
-            <h5 class="title is-5">ForumStack</h5>
+            <h5 class="title is-5">김진우게시판</h5>
           </a>
           <a
             role="button"
@@ -42,13 +45,48 @@
           </div>
           <div class="navbar-end">
             <div class="navbar-item">
-              <div class="buttons">
+<%--========== 회원가입/로그인 버튼구역 ======================================= --%>
+
+ <c:choose>
+        <c:when test="${sessionScope.UserId != null}">
+            <!-- 로그인 상태 -->
+            <div class="buttons">
+           <a class="button is-primary">
+                <p> ${UserId}님 환영합니다! </p></a>
+                <form
+                          id="frmNIDLogout"
+                          name="logoutFrm"
+                          target="_top" 
+                          autocomplete="off"
+                          action="logout.do"
+                          method="GET"
+                          onsubmit="return validateForm(this);"
+                          >
+            <button type="submit" class="button is-light" > 로그아웃 </button>
+            
+            </form>
+            <form
+            name="memberUpdateFrm"
+            action="memberUpdate.jsp"
+            method="GET"
+           onsubmit="return validateForm(this);"
+            >
+            <button type="submit" class="button is-light" style = "margin-left:9px;" > 정보 수정 </button>
+            </form>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <!-- 비로그인 상태 -->
+            <div class="buttons">
                 <a class="button is-primary">
-                  <strong> 회원가입 </strong>
+                    <strong> ${UserId}회원가입 </strong>
                 </a>
-                <a class="button is-light"href=
-                "./login.jsp"> 로그인 </a>
-              </div>
+                <a class="button is-light" href="./login.jsp"> 로그인 </a>
+            </div>
+        </c:otherwise>
+    </c:choose>
+
+<%--========== 회원가입/로그인 버튼구역 ======================================= --%>
             </div>
           </div>
         </div>
@@ -79,12 +117,10 @@
       <div class="columns">
         <div class="column is-three-quarters">
           <div class="tabs forum">
-            
-              <li>
-                <a href="../board/free_board.jsp">자유게시판</a>
-              </li>
+            <ul>
+              <li><a href="../views/free_board.jsp">자유게시판</a></li>
               <li class="is-active"><a>QA게시판</a></li>
-              <li><a href="../board/file_board.jsp">자료실게시판</a></li>
+              <li><a href="../views/file_board.jsp">자료실게시판</a></li>
               <li><a>인기 순위</a></li>
               <button class="tabs_btn">글쓰기</button>
             </ul>

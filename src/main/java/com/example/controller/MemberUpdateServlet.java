@@ -48,7 +48,7 @@ public class MemberUpdateServlet extends HttpServlet {
         dao.close(); // 데이터베이스 연결을 종료합니다.
         if (result > 0) {
             
-            JSFunction.alertLocation(resp, "정보 수정이 완료 되었습니다. 다시 로그인 해주세요.", "file_board.jsp"); // 수정 성공 시 경고창을 띄운 후 파일 보드 페이지로 리다이렉트
+            JSFunction.alertLocation(resp, "정보 수정이 완료 되었습니다.", "file_board.jsp"); // 수정 성공 시 경고창을 띄운 후 파일 보드 페이지로 리다이렉트
             System.out.println("MemberUpdateServlet update success");
         } else {
             req.setAttribute("errorMessage", "Update error, please try again."); // 정보수정  실패 시 에러 메시지를 설정합니다.

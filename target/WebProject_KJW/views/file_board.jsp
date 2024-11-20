@@ -19,12 +19,12 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    <% out.println("Hello World"); %>
+   
     <nav class="navbar forum" role="navigation" aria-label="main navigation">
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item" href="">
-            <h5 class="title is-5">ForumStack</h5>
+            <h5 class="title is-5">김진우게시판</h5>
           </a>
           <a
             role="button"
@@ -71,7 +71,7 @@ pageEncoding="UTF-8"%>
             method="GET"
            onsubmit="return validateForm(this);"
             >
-            <button type="submit" class="button is-light" > 정보 수정 </button>
+            <button type="submit" class="button is-light" style = "margin-left:9px;"> 정보 수정 </button>
             </form>
             </div>
         </c:when>
@@ -118,8 +118,8 @@ pageEncoding="UTF-8"%>
         <div class="column is-three-quarters">
           <div class="tabs forum">
             <ul>
-              <li><a href="../board/free_board.jsp">자유게시판</a></li>
-              <li><a href="../board/qa_board.jsp">QA게시판</a></li>
+              <li><a href="../views/free_board.jsp">자유게시판</a></li>
+              <li><a href="../views/qa_board.jsp">QA게시판</a></li>
               <li class="is-active"><a>자료실게시판</a></li>
               <li><a>인기 순위</a></li>
               <button class="tabs_btn">글쓰기</button>
