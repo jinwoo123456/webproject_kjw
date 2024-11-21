@@ -54,7 +54,7 @@ public class QABoardWriteServlet extends HttpServlet{
         dto.setUpdated_at(null); // 수정일은 초기값 NULL
 
 		QABoardDAO dao = new QABoardDAO(getServletContext()); // QABoardDAO 객체를 생성합니다.
-        int result = dao.QABoardWrite(dto); // 회원가입 처리를 수행하고 결과를 반환받습니다.
+        int result = dao.qaBoardWrite(dto); // 회원가입 처리를 수행하고 결과를 반환받습니다.
 
         if (result > 0) {
 			JSFunction.alertLocation(resp, "글이 성공적으로 작성되었습니다.", "../views/file_board.do");

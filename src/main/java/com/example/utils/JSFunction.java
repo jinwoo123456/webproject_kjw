@@ -12,6 +12,20 @@ public class JSFunction {
 	메서드 생성시 static을 통해 정적메서드로 정의하면 해당 클래스의 
 	인스턴스를 생성하지 않고도 클래스명으로 즉시 메서드를 호출할 수 있다. 
 	*/
+    public static void alert(HttpServletResponse resp, String msg) {
+        try {
+        	resp.setContentType("text/html; charset=UTF-8");
+        	PrintWriter writer = resp.getWriter();
+        	
+            String script = "" 
+            			  +	"<script>"
+                          + "    alert('" + msg + "');"
+                         
+                          + "</script>";
+            writer.println(script);
+        }
+        catch (Exception e) {}
+    }
 	public static void alertLocation(String msg, String url, 
 			JspWriter out) {
 		/*
