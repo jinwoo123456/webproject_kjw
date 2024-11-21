@@ -11,6 +11,8 @@ NAME	VARCHAR2(25 BYTE)
 PHONE_NUMBER	NUMBER(20,0)	
 HIRE_DATE	DATE	
 */
+
+//회원정보
 public class MemberDTO {
 private String id;
 private String pw;

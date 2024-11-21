@@ -6,6 +6,8 @@ import java.sql.SQLException;
 
 import jakarta.servlet.ServletContext;
 
+
+//회원정보
 public class MemberDAO extends JDBConnect {//JDBC를 위한 클래스를 상속하여 DB에 연결한다.
     //생성자1 : 드라이버, 커넥션URL 등 4개의 매개변수로 정의
     public MemberDAO(String drv, String url, String id, String pw) {
@@ -51,9 +53,13 @@ public class MemberDAO extends JDBConnect {//JDBC를 위한 클래스를 상속�
                 dto.setName(rs.getString("NAME")); // 이름 설정
                 dto.setPnum(rs.getInt("PHONE_NUMBER")); // 전화번호 설정
                 dto.setHdate(rs.getDate("HIRE_DATE")); // 가입일 설정
-                System.out.println("DAO ~ DTO Connect - 70line success");
+
+
+                System.out.println("DAO ~ DTO Connect - 70line success"); //디버깅용 출력문
             }
         }
+
+        //오류 출력
         catch (SQLException e) {
             e.printStackTrace();
             System.out.println("SQL error - MemberDAO - login");
@@ -115,6 +121,9 @@ public class MemberDAO extends JDBConnect {//JDBC를 위한 클래스를 상속�
             psmt.setInt(5, dto.getPnum()); // 다섯 번째 매개변수에 전화번호 설정
             psmt.setDate(6, dto.getHdate()); // 여섯 번째 매개변수에 가입일 설정
             result = psmt.executeUpdate(); // 쿼리 실행 및 결과 반환
+
+
+
             System.out.println("=======================회원가입값====================/////");
             System.out.println("dto.id    "+dto.getId());
             System.out.println("dto.pw    "+dto.getPw());
@@ -123,6 +132,8 @@ public class MemberDAO extends JDBConnect {//JDBC를 위한 클래스를 상속�
             System.out.println("dto.pnum    "+dto.getPnum());
             System.out.println("dto.hdate    "+dto.getHdate());
             System.out.println("===============================================/////");
+
+
         } catch (Exception e) { // 예외 처리
             e.printStackTrace(); // 스택 트레이스 출력
             System.out.println("error - MemberDAO - join line110"); // 에러 메시지 출력
@@ -134,7 +145,7 @@ public class MemberDAO extends JDBConnect {//JDBC를 위한 클래스를 상속�
 
 
 
-
+  //수정용
     public int update(MemberDTO dto) {
         int result = 0; // 결과를 저장할 변수를 0으로 초기화
         String query = "UPDATE MEMBER SET PASSWORD=?, EMAIL=?, NAME=?, PHONE_NUMBER=? WHERE ID=?";
@@ -147,6 +158,11 @@ public class MemberDAO extends JDBConnect {//JDBC를 위한 클래스를 상속�
             psmt.setString(5, dto.getId()); // 5 번째 매개변수에 ID 설정
            // 여섯 번째 매개변수에 가입일 설정
            result = psmt.executeUpdate(); // 쿼리 실행 및 결과 반환
+
+
+
+
+           
            System.out.println("update line 167");
             System.out.println("====================dao update method====================/////");
            System.out.println("dto.id     "+dto.getId());

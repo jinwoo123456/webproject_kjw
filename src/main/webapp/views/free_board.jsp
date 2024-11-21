@@ -20,6 +20,7 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
    
+   <%--================================== 메뉴바================================== --%>
     <nav class="navbar forum" role="navigation" aria-label="main navigation">
       <div class="container">
         <div class="navbar-brand">
@@ -45,7 +46,7 @@ pageEncoding="UTF-8"%>
           </div>
           <div class="navbar-end">
             <div class="navbar-item">
-<%--========== 회원가입/로그인 버튼구역 ======================================= --%>
+<%--====================== 회원가입/로그인 버튼구역 ======================================= --%>
 
  <c:choose>
         <c:when test="${sessionScope.UserId != null}">
@@ -66,8 +67,8 @@ pageEncoding="UTF-8"%>
             
             </form>
             <form
-            name="memberUpdateFrm"
-            action="memberUpdate.jsp"
+            name="member_updateFrm"
+            action="member_update.jsp"
             method="GET"
            onsubmit="return validateForm(this);"
             >
@@ -85,13 +86,14 @@ pageEncoding="UTF-8"%>
             </div>
         </c:otherwise>
     </c:choose>
-
-<%--========== 회원가입/로그인 버튼구역 ======================================= --%>
             </div>
           </div>
         </div>
       </div>
     </nav>
+<%--========== 회원가입/로그인 버튼구역 끝======================================= --%>
+
+
     <section class="hero is-primary">
       <div class="hero-body">
         <div class="container hero-forum has-text-centered">
@@ -113,6 +115,7 @@ pageEncoding="UTF-8"%>
       </div>
     </section>
     <br />
+    <%--=================================== 게시판 누르면 이동되는 곳============================== --%>
     <div class="container">
       <div class="columns">
         <div class="column is-three-quarters">
@@ -127,237 +130,68 @@ pageEncoding="UTF-8"%>
           </div>
 
 
+
+
+
+
+
+
           <%--===================================== 게시판 글폼================================== --%>
-          <div class="box forum">
+          
+   <div class="container">
+    
+    <div class="box forum">
+        <c:forEach var="freeboard" items="${freeBoardList}">
             <article class="media">
-              <div class="media-left">
-                <figure class="image avatar is-64x64">
-                  <img src="assets/img/1.png" alt="Image" class="is-rounded" />
-                </figure>
-              </div>
-              <div class="media-content">
-                <div class="content list-forum">
-                  <div class="is-pulled-right has-text-centered">
-                    <a href="#" class="love">
-                      <span>
-                        <i class="mdi mdi-heart-outline"></i>
-                      </span>
-                    </a>
-                    <span>15</span>
-                  </div>
-                  <p class="text-content">
-                    <a href="#"
-                      >How to make great application with nuxtjs
-                      <span class="solved" title="Solved">
-                        <i class="mdi mdi-checkbox-marked-circle"></i>
-                      </span>
-                    </a>
-                  </p>
-                  <p class="tags-content">
-                    <a class="tag is-rounded is-primary">NuxtJS</a>
-                    <a class="tag is-rounded is-success">VueJS</a>
-                    <a class="tag is-rounded is-warning">JavaScript</a>
-                  </p>
-                  <p class="info-content">
-                    <a>
-                      <i class="mdi mdi-eye-outline"></i>
-                      <small>100k</small>
-                    </a>
-                    <a>
-                      <i class="mdi mdi-comment-text-multiple-outline"></i>
-                      <small>70</small>
-                    </a>
-                  </p>
+                <div class="media-left">
+                    <figure class="image avatar is-64x64">
+                        <img src="assets/img/1.png" alt="Image" class="is-rounded" />
+                    </figure>
                 </div>
-              </div>
-            </article>
-            <article class="media">
-              <div class="media-left">
-                <figure class="image avatar is-64x64">
-                  <img src="assets/img/4.png" alt="Image" class="is-rounded" />
-                </figure>
-              </div>
-              <div class="media-content">
-                <div class="content list-forum">
-                  <div class="is-pulled-right has-text-centered">
-                    <a href="#" class="love active">
-                      <span>
-                        <i class="mdi mdi-heart"></i>
-                      </span>
-                    </a>
-                    <span>12</span>
-                  </div>
-                  <p class="text-content">
-                    <a href="#"> Why use JWT for Web SPA ? </a>
-                  </p>
-                  <p class="tags-content">
-                    <a class="tag is-rounded is-primary">SPA</a>
-                    <a class="tag is-rounded is-grey">JWT</a>
-                    <a class="tag is-rounded is-link">FrontEnd</a>
-                  </p>
-                  <p class="info-content">
-                    <a>
-                      <i class="mdi mdi-eye-outline"></i>
-                      <small>30k</small>
-                    </a>
-                    <a>
-                      <i class="mdi mdi-comment-text-multiple-outline"></i>
-                      <small>12</small>
-                    </a>
-                  </p>
+                <div class="media-content">
+                    <div class="content list-forum">
+                        <div class="is-pulled-right has-text-centered">
+                            <a href="#" class="love">
+                                <span>
+                                    <i class="mdi mdi-heart-outline"></i>
+                                </span>
+                            </a>
+                            <span>${freeboard.like_count}</span>
+                        </div>
+                        <p class="text-content">
+                            <a href="free_board_view.do?postId=${freeboard.post_id}">
+                                ${freeboard.title}
+                                <span class="solved" title="Solved">
+                                    <i class="mdi mdi-checkbox-marked-circle"></i>
+                                </span>
+                            </a>
+                        </p>
+                        <p class="tags-content">
+                            <a class="tag is-rounded is-primary">NuxtJS</a>
+                            <a class="tag is-rounded is-success">VueJS</a>
+                            <a class="tag is-rounded is-warning">JavaScript</a>
+                        </p>
+                        <p class="info-content">
+                            <a>
+                                <i class="mdi mdi-eye-outline"></i>
+                                <small>${freeboard.visit_count}</small>
+                            </a>
+                            <a>
+                                <i class="mdi mdi-comment-text-multiple-outline"></i>
+                                <small>70</small>
+                            </a>
+                        </p>
+                    </div>
                 </div>
-              </div>
             </article>
-            <article class="media">
-              <div class="media-left">
-                <figure class="image avatar is-64x64">
-                  <img src="assets/img/2.png" alt="Image" class="is-rounded" />
-                </figure>
-              </div>
-              <div class="media-content">
-                <div class="content list-forum">
-                  <div class="is-pulled-right has-text-centered">
-                    <a href="#" class="love">
-                      <span>
-                        <i class="mdi mdi-heart-outline"></i>
-                      </span>
-                    </a>
-                    <span>30</span>
-                  </div>
-                  <p class="text-content">
-                    <a href="#">How to make great application with nuxtjs</a>
-                  </p>
-                  <p class="tags-content">
-                    <a class="tag is-rounded is-primary">NuxtJS</a>
-                    <a class="tag is-rounded is-success">VueJS</a>
-                    <a class="tag is-rounded is-warning">JavaScript</a>
-                  </p>
-                  <p class="info-content">
-                    <a>
-                      <i class="mdi mdi-eye-outline"></i>
-                      <small>100k</small>
-                    </a>
-                    <a>
-                      <i class="mdi mdi-comment-text-multiple-outline"></i>
-                      <small>10</small>
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </article>
-            <article class="media">
-              <div class="media-left">
-                <figure class="image avatar is-64x64">
-                  <img src="assets/img/3.png" alt="Image" class="is-rounded" />
-                </figure>
-              </div>
-              <div class="media-content">
-                <div class="content list-forum">
-                  <div class="is-pulled-right has-text-centered">
-                    <a href="#" class="love">
-                      <span>
-                        <i class="mdi mdi-heart-outline"></i>
-                      </span>
-                    </a>
-                    <span>100</span>
-                  </div>
-                  <p class="text-content">
-                    <a href="#">How to make a file in PHP using fopen ?</a>
-                  </p>
-                  <p class="tags-content">
-                    <a class="tag is-rounded is-info">PHP</a>
-                    <a class="tag is-rounded is-success">BackEnd</a>
-                    <a class="tag is-rounded is-warning">Help</a>
-                  </p>
-                  <p class="info-content">
-                    <a>
-                      <i class="mdi mdi-eye-outline"></i>
-                      <small>2k</small>
-                    </a>
-                    <a>
-                      <i class="mdi mdi-comment-text-multiple-outline"></i>
-                      <small>20</small>
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </article>
-            <article class="media">
-              <div class="media-left">
-                <figure class="image avatar is-64x64">
-                  <img src="assets/img/4.png" alt="Image" class="is-rounded" />
-                </figure>
-              </div>
-              <div class="media-content">
-                <div class="content list-forum">
-                  <div class="is-pulled-right has-text-centered">
-                    <a href="#" class="love active">
-                      <span>
-                        <i class="mdi mdi-heart"></i>
-                      </span>
-                    </a>
-                    <span>12</span>
-                  </div>
-                  <p class="text-content">
-                    <a href="#"> Why use JWT for Web SPA ? </a>
-                  </p>
-                  <p class="tags-content">
-                    <a class="tag is-rounded is-primary">SPA</a>
-                    <a class="tag is-rounded is-grey">JWT</a>
-                    <a class="tag is-rounded is-link">FrontEnd</a>
-                  </p>
-                  <p class="info-content">
-                    <a>
-                      <i class="mdi mdi-eye-outline"></i>
-                      <small>30k</small>
-                    </a>
-                    <a>
-                      <i class="mdi mdi-comment-text-multiple-outline"></i>
-                      <small>12</small>
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </article>
-            <article class="media">
-              <div class="media-left">
-                <figure class="image avatar is-64x64">
-                  <img src="assets/img/2.png" alt="Image" class="is-rounded" />
-                </figure>
-              </div>
-              <div class="media-content">
-                <div class="content list-forum">
-                  <div class="is-pulled-right has-text-centered">
-                    <a href="#" class="love">
-                      <span>
-                        <i class="mdi mdi-heart-outline"></i>
-                      </span>
-                    </a>
-                    <span>30</span>
-                  </div>
-                  <p class="text-content">
-                    <a href="#">How to make great application with nuxtjs</a>
-                  </p>
-                  <p class="tags-content">
-                    <a class="tag is-rounded is-primary">NuxtJS</a>
-                    <a class="tag is-rounded is-success">VueJS</a>
-                    <a class="tag is-rounded is-warning">JavaScript</a>
-                  </p>
-                  <p class="info-content">
-                    <a>
-                      <i class="mdi mdi-eye-outline"></i>
-                      <small>100k</small>
-                    </a>
-                    <a>
-                      <i class="mdi mdi-comment-text-multiple-outline"></i>
-                      <small>10</small>
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </article>
-          </div>
-          <%--===================================== 게시판 글폼================================== --%>
+        </c:forEach>
+    </div>
+</div>
+          <%--===================================== 게시판 글폼 끝================================== --%>
+
+
+
+          <%-- ===================================페이징 폼=================================== --%>
           <div class="box">
             <nav
               class="pagination is-rounded"
@@ -392,7 +226,14 @@ pageEncoding="UTF-8"%>
               </ul>
             </nav>
           </div>
-        </div>
+          </div>
+          <%-- ===================================페이징 폼 끝=================================== --%>
+
+
+
+        
+
+         <%-- 컬럼 / 게시판 우측 태그 정보들 --%>
         <div class="column">
           <div class="box">
             <h5 class="title is-5"># POPULAR TAGS</h5>
@@ -409,7 +250,9 @@ pageEncoding="UTF-8"%>
             </div>
           </div>
         </div>
-      </div>
+
+
+      </div> <%-- /div 위치  --%>
       <footer class="footer">
         <div class="content has-text-centered">
           <p>

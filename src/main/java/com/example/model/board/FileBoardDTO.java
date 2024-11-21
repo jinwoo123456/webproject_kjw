@@ -13,6 +13,8 @@ CATE	VARCHAR2(50 BYTE)
 OFILE	VARCHAR2(100 BYTE)
 SFILE	VARCHAR2(30 BYTE)
 */
+
+//자료형 게시판
 public class FileBoardDTO {
 
  private int post_id; // 게시글 번호

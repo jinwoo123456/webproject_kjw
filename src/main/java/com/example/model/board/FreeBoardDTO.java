@@ -12,6 +12,8 @@ VISIT_COUNT	NUMBER
 LIKE_COUNT	NUMBER
 UPDATED_AT	DATE
 */
+
+// 자유게시판
 public class FreeBoardDTO {
     private int post_id; // 게시글 번호
     private String title; // 제목

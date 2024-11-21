@@ -11,6 +11,8 @@ VISIT_COUNT	NUMBER
 LIKE_COUNT	NUMBER
 UPDATED_AT	DATE
 */
+
+// Q&A게시판
 public class QABoardDTO {
    private int post_id; // 게시글 번호
     private String title; // 제목

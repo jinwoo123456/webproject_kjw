@@ -1,6 +1,6 @@
+C:\project-space\WebProject_KJW\src\main\java\com\example\controller\board\FreeBoardListViewServlet.java
 C:\project-space\WebProject_KJW\src\main\java\com\example\controller\MemberUpdateServlet.java
 C:\project-space\WebProject_KJW\src\main\java\com\example\model\board\FIleBoardDAO.java
-C:\project-space\WebProject_KJW\src\main\java\com\example\controller\FreeBoardWriteServlet.java
 C:\project-space\WebProject_KJW\src\main\java\com\example\utils\JSFunction.java
 C:\project-space\WebProject_KJW\src\main\java\com\example\model\board\QABoardDAO.java
 C:\project-space\WebProject_KJW\src\main\java\com\example\model\board\FileBoardDTO.java
@@ -10,7 +10,10 @@ C:\project-space\WebProject_KJW\src\main\java\com\example\model\MemberDTO.java
 C:\project-space\WebProject_KJW\src\main\java\com\example\controller\LoginServlet.java
 C:\project-space\WebProject_KJW\src\main\java\com\example\controller\LogoutServlet.java
 C:\project-space\WebProject_KJW\src\main\java\com\example\utils\Test.java
+C:\project-space\WebProject_KJW\src\main\java\com\example\controller\board\QABoardListViewServlet.java
 C:\project-space\WebProject_KJW\src\main\java\com\example\model\MemberDAO.java
+C:\project-space\WebProject_KJW\src\main\java\com\example\controller\board\QABoardWriteServlet.java
 C:\project-space\WebProject_KJW\src\main\java\com\example\model\board\FreeBoardDTO.java
 C:\project-space\WebProject_KJW\src\main\java\com\example\model\JDBConnect.java
+C:\project-space\WebProject_KJW\src\main\java\com\example\controller\board\FreeBoardWriteServlet.java
 C:\project-space\WebProject_KJW\src\main\java\com\example\model\board\FreeBoardDAO.java

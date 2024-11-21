@@ -143,7 +143,7 @@
 <body>
     <div class="form-container">
         <h2>회원가입</h2>
-        <%--
+        <%--    dto 정보//
                 private String id;
                 private String pw;
                 private String email;

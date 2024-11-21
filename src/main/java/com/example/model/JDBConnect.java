@@ -8,6 +8,8 @@ import java.sql.Statement;
 
 import jakarta.servlet.ServletContext;
 
+
+//DB연결을 위한 클래스
 public class JDBConnect {
 //	멤버변수 : DB연결, 정적쿼리실행, 동적쿼리실행, select결과반환
 	public Connection con;

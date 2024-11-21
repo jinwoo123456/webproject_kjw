@@ -12,7 +12,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/views/memberUpdate.do")
+
+
+
+
+@WebServlet("/views/memberUpdate.do")// 회원정보 수정 서블릿
 public class MemberUpdateServlet extends HttpServlet {
 
     @Override
@@ -36,10 +40,10 @@ public class MemberUpdateServlet extends HttpServlet {
         dto.setPnum(pnum); // MemberDTO 객체에 pnum 데이터를 설정합니다.
 
         System.out.println("=================MemberUpdateServlet dto=======================");
-        System.out.println("pw"+dto.getPw());
-        System.out.println("email"+dto.getEmail());
-        System.out.println("name"+dto.getName());
-        System.out.println("pnume"+dto.getPnum());
+        System.out.println("pw    "+dto.getPw());
+        System.out.println("email    "+dto.getEmail());
+        System.out.println("name    "+dto.getName());
+        System.out.println("pnume   "+dto.getPnum());
         System.out.println("=================MemberUpdateServlet dto=======================");
 
         MemberDAO dao = new MemberDAO(getServletContext()); // MemberDAO 객체를 생성합니다.

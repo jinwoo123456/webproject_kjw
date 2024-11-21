@@ -66,8 +66,8 @@ pageEncoding="UTF-8"%>
             
             </form>
             <form
-            name="memberUpdateFrm"
-            action="memberUpdate.jsp"
+            name="member_updateFrm"
+            action="member_update.jsp"
             method="GET"
            onsubmit="return validateForm(this);"
             >
@@ -118,7 +118,7 @@ pageEncoding="UTF-8"%>
         <div class="column is-three-quarters">
           <div class="tabs forum">
             <ul>
-              <li><a href="../views/free_board.jsp">자유게시판</a></li>
+              <li><a href="../views/free_board.do">자유게시판</a></li>
               <li><a href="../views/qa_board.jsp">QA게시판</a></li>
               <li class="is-active"><a>자료실게시판</a></li>
               <li><a>인기 순위</a></li>

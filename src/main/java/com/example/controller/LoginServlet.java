@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/views/login.do")
+@WebServlet("/views/login.do") //로그인 서블릿
 public class LoginServlet extends HttpServlet {
     
     
@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
             req.getSession().setAttribute("UserEmail", member.getEmail());
             req.getSession().setAttribute("UserPnum", member.getPnum());
             req.getRequestDispatcher("file_board.jsp").forward(req, resp); // 로그인 성공 후 이동할 페이지
-
+            
 
         } else {
             // 로그인 실패

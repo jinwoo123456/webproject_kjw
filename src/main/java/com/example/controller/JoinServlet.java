@@ -15,10 +15,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 
 
-@WebServlet("/views/join.do") // URL 패턴 수정
+@WebServlet("/views/join.do") //회원가입 서블릿
 public class JoinServlet extends HttpServlet {
-
-   
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8"); // 요청의 인코딩을 UTF-8로 설정합니다.
