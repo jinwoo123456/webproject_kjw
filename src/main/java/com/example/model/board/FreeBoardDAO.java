@@ -154,4 +154,34 @@ public class FreeBoardDAO extends JDBConnect{
     }
 
 
+    //http://localhost:8980/WebProject_KJW/views/free_board_view.do?postId=22
+    //게시물 상세페이지 메서드
+    public FreeBoardDTO getFreeBoardView(int postId) {
+        FreeBoardDTO dto = new FreeBoardDTO();
+        String query = "SELECT * FROM FREE_BOARD WHERE POST_ID = ?"; // SQL 쿼리문 정의
+        try {
+            psmt = con.prepareStatement(query); // PreparedStatement 객체 생성
+            psmt.setInt(1, postId); // 첫 번째 매개변수에 postId 설정
+            rs = psmt.executeQuery(); // 쿼리 실행 및 결과 반환
+            if(rs.next()) { // 결과가 존재하면
+                dto.setPost_id(rs.getInt("POST_ID")); // 게시글 번호 설정
+                dto.setTitle(rs.getString("TITLE")); // 제목 설정
+                dto.setContent(rs.getString("CONTENT")); // 내용 설정
+                dto.setId(rs.getString("ID")); // 작성자 설정
+                dto.setPost_date(rs.getDate("POST_DATE")); // 작성일 설정
+                dto.setVisit_count(rs.getInt("VISIT_COUNT")); // 조회수 설정
+                dto.setLike_count(rs.getInt("LIKE_COUNT")); // 좋아요 수 설정
+                dto.setUpdated_at(rs.getDate("UPDATED_AT")); // 수정일 설정
+                System.out.println("freeboarddao - getFreeBoardView - 70line success");
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("SQL error - FreeBoardDAO - getFreeBoardView");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("General error - FreeBoardDAO - getFreeBoardView");
+        }
+        return dto; // FreeBoardDTO 객체 반환
+    }       
 }

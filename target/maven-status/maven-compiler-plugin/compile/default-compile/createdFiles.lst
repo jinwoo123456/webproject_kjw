@@ -1,4 +1,5 @@
 com\example\controller\JoinServlet.class
+com\example\controller\board\FreeBoardViewServlet.class
 com\example\utils\JSFunction.class
 com\example\model\board\FileBoardDTO.class
 com\example\model\board\FreeBoardDAO.class
@@ -11,7 +12,7 @@ com\example\model\board\FIleBoardDAO.class
 com\example\controller\LoginServlet.class
 com\example\model\MemberDAO.class
 com\example\model\board\FreeBoardDTO.class
-com\example\controller\board\FreeBoardListViewServlet.class
+com\example\controller\board\FreeBoardListServlet.class
 com\example\controller\board\FreeBoardWriteServlet.class
 com\example\model\board\QABoardDAO.class
 com\example\model\JDBConnect.class

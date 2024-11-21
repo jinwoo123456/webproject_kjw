@@ -4,8 +4,8 @@ package com.example.controller.board;
 import java.io.IOException;
 import java.sql.Date;
 
-import com.example.model.board.FreeBoardDAO;
-import com.example.model.board.FreeBoardDTO;
+import com.example.model.board.QABoardDAO;
+import com.example.model.board.QABoardDTO;
 import com.example.utils.JSFunction;
 
 import jakarta.servlet.ServletException;
@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 
-@WebServlet("/views/free_board_write.do")
+@WebServlet("/views/qa_board_write.do")
 public class QABoardWriteServlet extends HttpServlet{
 	
 	@Override
@@ -44,7 +44,7 @@ public class QABoardWriteServlet extends HttpServlet{
 
 
 
-		FreeBoardDTO dto = new FreeBoardDTO();
+		QABoardDTO dto = new QABoardDTO();
 		dto.setId(id);
 		dto.setTitle(title);
 		dto.setContent(content);
@@ -53,15 +53,15 @@ public class QABoardWriteServlet extends HttpServlet{
         dto.setLike_count(0); // 기본값 설정
         dto.setUpdated_at(null); // 수정일은 초기값 NULL
 
-		FreeBoardDAO dao = new FreeBoardDAO(getServletContext()); // FreeBoardDAO 객체를 생성합니다.
-        int result = dao.freeBoardWrite(dto); // 회원가입 처리를 수행하고 결과를 반환받습니다.
+		QABoardDAO dao = new QABoardDAO(getServletContext()); // QABoardDAO 객체를 생성합니다.
+        int result = dao.QABoardWrite(dto); // 회원가입 처리를 수행하고 결과를 반환받습니다.
 
         if (result > 0) {
 			JSFunction.alertLocation(resp, "글이 성공적으로 작성되었습니다.", "../views/file_board.do");
-            System.out.println("FreeBoardWriteServlet   write success");
+            System.out.println("QABoardWriteServlet   write success");
         } else {
 			JSFunction.alertBack(resp, "글 작성에 실패했습니다. 다시 시도해주세요.");
-            System.out.println("FreeBoardWriteServlet   write false");
+            System.out.println("QABoardWriteServlet   write false");
         }
 
 
