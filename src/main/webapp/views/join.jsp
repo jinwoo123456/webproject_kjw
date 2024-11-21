@@ -152,6 +152,7 @@
                 private String hdate;
         
          --%>
+        
         <form onsubmit="return validateForm(this);" action="join.do" method="POST">
             <div class="form-group">
                 <label for="id">아이디</label>

@@ -1,6 +1,0 @@
-<Context>
-    <ResourceLink name="jdbc/dbcp_myoracle"
-                  global="jdbc/dbcp_myoracle"
-                  auth="Container"
-                  type="javax.sql.DataSource" />
-</Context>

@@ -101,10 +101,7 @@ public class FreeBoardDAO extends JDBConnect{
         return result;
     }
 
-    public void freeBoardDebug(){
-
-       
-    }
+    
    
      // 게시글 목록을 가져오는 메서드
      public List<FreeBoardDTO> getFreeBoardList() {
@@ -184,4 +181,31 @@ public class FreeBoardDAO extends JDBConnect{
         }
         return dto; // FreeBoardDTO 객체 반환
     }       
+//String query = "UPDATE FREE_BOARD SET TITLE = ?, CONTENT = ?, UPDATED_AT = ? WHERE POST_ID = ?";
+    //게시물 수정 메서드
+    public int freeBoardUpdate(FreeBoardDTO dto) {
+        int result = 0;
+        try {
+            String query = "UPDATE FREE_BOARD SET TITLE = ?, CONTENT = ?, UPDATED_AT = ? WHERE POST_ID = ?";
+            psmt = con.prepareStatement(query);
+            psmt.setString(1, dto.getTitle());
+            psmt.setString(2, dto.getContent());
+            psmt.setDate(3, dto.getUpdated_at());
+            psmt.setInt(4, dto.getPost_id());
+
+            result = psmt.executeUpdate();
+
+            System.out.println("freeboarddao - freeBoardUpdate - 70line success");
+            System.out.println("=====================dao - freeBoardUpdate - 70line=====================");
+            System.out.println("제목: " + dto.getTitle());
+            System.out.println("내용: " + dto.getContent());
+            System.out.println("수정일: " + dto.getUpdated_at());
+            System.out.println("게시글 번호: " + dto.getPost_id());
+            System.out.println("=======================================================================");
+        } catch (Exception e) {
+            System.out.println("게시물 업데이트 중 예외 발생");
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

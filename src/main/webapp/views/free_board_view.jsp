@@ -80,7 +80,14 @@
             <a href="boardList.jsp" class="button-link">목록으로 돌아가기</a>
             
             <!-- 수정하기 -->
-            <a href="free_board_view_update.jsp?title=${freeBoardView.title}&id=${freeBoardView.id}&content=${freeBoardView.content}&post_date=${freeBoardView.post_date}" class="button-link">수정하기</a>
+            <form action="free_board_update.do" method="post">
+                <input type="hidden" name="id" value="${freeBoardView.id}">
+                <input type="hidden" name="content" value="${freeBoardView.content}">
+                <input type="hidden" name="post_date" value="${freeBoardView.post_date}">
+                <input type="hidden" name="title" value="${freeBoardView.title}">
+                
+                <button type="submit" class="button-link">수정하기</button>
+            </form>
         </div>
     </div>
 </body>

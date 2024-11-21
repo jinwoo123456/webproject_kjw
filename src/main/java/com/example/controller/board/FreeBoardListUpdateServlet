@@ -1,8 +1,0 @@
-package com.example.controller.board;
-
-
-@WebServlet("/board/freeBoardListUpdate.do")
-public class FreeBoardUpdateServlet{
-    
-
-}

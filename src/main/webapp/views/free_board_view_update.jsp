@@ -71,7 +71,7 @@
     <div class="container">
         <h1>게시물 수정</h1>
         
-        <form action="updateBoard.jsp" method="post">
+        <form onsubmit="return validateForm(this);" action="free_board_update.do" method="post">
             <!-- 게시물 제목 -->
             <label for="title">제목</label>
             <input type="text" id="title" name="title" value="${param.title}" required>
