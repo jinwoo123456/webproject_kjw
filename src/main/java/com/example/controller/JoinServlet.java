@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 import com.example.model.MemberDAO;
 import com.example.model.MemberDTO;
+import com.example.utils.JSFunction;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -38,12 +39,17 @@ public class JoinServlet extends HttpServlet {
         dto.setName(name); // MemberDTO 객체에 name 데이터를 설정합니다.
         dto.setPnum(pnum); // MemberDTO 객체에 pnum 데이터를 설정합니다.
         dto.setHdate(hdate); // MemberDTO 객체에 hdate 데이터를 설정합니다. 
-
         MemberDAO dao = new MemberDAO(getServletContext()); // MemberDAO 객체를 생성합니다.
-        int result = dao.join(dto); // 회원가입 처리를 수행하고 결과를 반환받습니다.
+        if (dao.isIdExist(id)) {
+            
+           
+            JSFunction.alertLocation(resp, "이미 존재하는 ID입니다. 다른 ID를 사용해주세요.", "join.jsp");
+            return;
+        }
 
+        int result = dao.join(dto); // 회원가입 처리를 수행하고 결과를 반환받습니다.
         if (result > 0) {
-            resp.sendRedirect("login.jsp"); // 회원가입 성공 시 로그인 페이지로 리다이렉트합니다.
+            JSFunction.alertLocation(resp, "회원가입이 성공적으로 완료되었습니다. 로그인해주세요.", "login.jsp"); // 회원가입 성공 시 알림창을 띄우고 로그인 페이지로 이동합니다.
             System.out.println("joinservlet 회원가입 성공");
         } else {
             req.setAttribute("errorMessage", "회원가입에 실패했습니다. 다시 시도해주세요."); // 회원가입 실패 시 에러 메시지를 설정합니다.

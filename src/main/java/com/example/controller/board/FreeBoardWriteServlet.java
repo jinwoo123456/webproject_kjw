@@ -40,6 +40,12 @@ public class FreeBoardWriteServlet extends HttpServlet{
 		/*timstamp는 밀리초 단위까지 저장,하지만 date 자료형에 넣으면 밀리초는 삭제됌. */
 
 
+		System.out.println("==================free_board_write.do=====================");
+		System.out.println("id  :  " + id);
+		System.out.println("title  :  " + title);
+		System.out.println("content  :  " + content);
+		System.out.println("=========================================================");
+
 
 
 

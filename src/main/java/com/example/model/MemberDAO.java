@@ -141,8 +141,22 @@ public class MemberDAO extends JDBConnect {//JDBC를 위한 클래스를 상속�
         return result; // 결과 반환
     }
 
-
-
+    public boolean isIdExist(String id) {
+        boolean result = false;
+        String query = "SELECT COUNT(*) FROM member WHERE ID=?";
+        try (PreparedStatement psmt = con.prepareStatement(query)) {
+            psmt.setString(1, id);
+            try (ResultSet rs = psmt.executeQuery()) {
+                if (rs.next()) {
+                    result = rs.getInt(1) > 0;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("error - MemberDAO - isIdExist");
+        }
+        return result;
+    }
 
 
   //수정용

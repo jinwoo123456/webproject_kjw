@@ -32,13 +32,22 @@ public class QABoardWriteServlet extends HttpServlet{
 		
 		
 
-		
+		// 이 부분은 글 작성이 되면 나옴.
 		String id = req.getParameter("id");
 		String title = req.getParameter("title"); // 클라이언트로부터 title 데이터를 가져옵니다.
         String content = req.getParameter("content"); // 클라이언트로부터 content 데이터를 가져옵니다.
 		long currentTimeMillis = System.currentTimeMillis(); // timeStampe를 가져옴
 		Date post_date = new Date(currentTimeMillis); //post_date에 timstamp를 date타입으로 변환하여 저장
 		/*timstamp는 밀리초 단위까지 저장,하지만 date 자료형에 넣으면 밀리초는 삭제됌. */
+
+
+
+		System.out.println("==================qa_board_write.do=====================");
+		System.out.println("id  :  " + id);
+		System.out.println("title  :  " + title);
+		System.out.println("content  :  " + content);
+		System.out.println("=========================================================");
+
 
 
 
@@ -54,10 +63,10 @@ public class QABoardWriteServlet extends HttpServlet{
         dto.setUpdated_at(null); // 수정일은 초기값 NULL
 
 		QABoardDAO dao = new QABoardDAO(getServletContext()); // QABoardDAO 객체를 생성합니다.
-        int result = dao.QABoardWrite(dto); // 회원가입 처리를 수행하고 결과를 반환받습니다.
+        int result = dao.qaBoardWrite(dto); // 회원가입 처리를 수행하고 결과를 반환받습니다.
 
         if (result > 0) {
-			JSFunction.alertLocation(resp, "글이 성공적으로 작성되었습니다.", "../views/file_board.do");
+			JSFunction.alertLocation(resp, "글이 성공적으로 작성되었습니다.", "../views/qa_board.do");
             System.out.println("QABoardWriteServlet   write success");
         } else {
 			JSFunction.alertBack(resp, "글 작성에 실패했습니다. 다시 시도해주세요.");

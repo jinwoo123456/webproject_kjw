@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.example.model.MemberDAO;
 import com.example.model.MemberDTO;
+import com.example.utils.JSFunction;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -48,6 +49,7 @@ public class LoginServlet extends HttpServlet {
 
         } else {
             // 로그인 실패
+            JSFunction.alertBack(resp, "아이디 또는 비밀번호가 일치하지 않습니다.");
             req.setAttribute("errorMessage", "아이디 또는 비밀번호가 일치하지 않습니다.");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
