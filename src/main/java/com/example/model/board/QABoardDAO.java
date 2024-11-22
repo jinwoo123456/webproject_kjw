@@ -143,11 +143,23 @@ public class QABoardDAO extends JDBConnect{
             System.out.println("=======================================================================");
         } catch (SQLException e) {
             e.printStackTrace();
+            System.err.println("SQL error in getQABoardList - Error Code: " + e.getErrorCode());
+            System.err.println("SQL State: " + e.getSQLState());
+            System.err.println("Error Message: " + e.getMessage());
+            e.printStackTrace();
             System.out.println("SQL error - QABoardDAO - getQABoardList");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("General error - QABoardDAO - getQABoardList");
+        }finally {
+            try {
+                if (rs != null) rs.close(); // ResultSet 자원 반납
+                if (psmt != null) psmt.close(); // PreparedStatement 자원 반납
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+       
         return qaBoardList; // 게시글 목록 반환
     }
 

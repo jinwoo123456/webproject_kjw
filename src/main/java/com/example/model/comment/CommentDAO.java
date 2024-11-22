@@ -120,7 +120,7 @@ public class CommentDAO extends JDBConnect {
 
     //댓글 작성 메서드
     public boolean writeComment(CommentDTO dto) {
-        String query = "INSERT INTO COMMENT VALUES(?, ?, ?, SYSDATE, 0, NULL)"; // SQL 쿼리문 정의
+        String query = "INSERT INTO COMMENTS VALUES(?, ?, ?, SYSDATE, 0, NULL)"; // SQL 쿼리문 정의
         try {
             psmt = con.prepareStatement(query); // PreparedStatement 객체 생성
             psmt.setInt(1, dto.getPost_id()); // 첫 번째 매개변수에 post_id 설정

@@ -146,6 +146,13 @@ public class FreeBoardDAO extends JDBConnect{
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("General error - FreeBoardDAO - getFreeBoardList");
+        }finally {
+            try {
+                if (rs != null) rs.close(); // ResultSet 자원 반납
+                if (psmt != null) psmt.close(); // PreparedStatement 자원 반납
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return boardList; // 게시글 목록 반환
     }
