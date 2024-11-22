@@ -60,12 +60,14 @@ public class CommentDAO extends JDBConnect {
         }
 
     //댓글 목록을 가져오는 메서드
-    public List<CommentDTO> getCommentList(int postId) {
+    public List<CommentDTO> getCommentList(int postId,int qaPostId) {
+        
         List<CommentDTO> list = new ArrayList<CommentDTO>();
-        String query = "SELECT * FROM COMMENT WHERE POST_ID = ?"; // SQL 쿼리문 정의
+        String query = "SELECT * FROM COMMENTS WHERE POST_ID = ? AND POST_ID IN (SELECT POST_ID FROM QA_BOARD WHERE POST_ID = ?)"; // SQL 쿼리문 정의
         try {
             psmt = con.prepareStatement(query); // PreparedStatement 객체 생성
             psmt.setInt(1, postId); // 첫 번째 매개변수에 postId 설정
+            psmt.setInt(2, qaPostId); // 두 번째 매개변수에 postId 설정
             rs = psmt.executeQuery(); // 쿼리 실행 및 결과 반환
             while(rs.next()) { // 결과가 존재하면
                 CommentDTO dto = new CommentDTO(); // CommentDTO 객체 생성
@@ -115,4 +117,28 @@ public class CommentDAO extends JDBConnect {
         }
         return dto; // CommentDTO 객체 반환
     }     
+
+    //댓글 작성 메서드
+    public boolean writeComment(CommentDTO dto) {
+        String query = "INSERT INTO COMMENT VALUES(?, ?, ?, SYSDATE, 0, NULL)"; // SQL 쿼리문 정의
+        try {
+            psmt = con.prepareStatement(query); // PreparedStatement 객체 생성
+            psmt.setInt(1, dto.getPost_id()); // 첫 번째 매개변수에 post_id 설정
+            psmt.setString(2, dto.getContent()); // 두 번째 매개변수에 content 설정
+            psmt.setString(3, dto.getId()); // 세 번째 매개변수에 id 설정
+            int result = psmt.executeUpdate(); // 쿼리 실행 및 결과 반환
+            if(result > 0) { // 결과가 존재하면
+                System.out.println("CommentDAO - writeComment - 70line success");
+                return true; // true 반환
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("SQL error - CommentDAO - writeComment");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("General error - CommentDAO - writeComment");
+        }
+        return false; // false 반환
+    }
 }

@@ -77,7 +77,7 @@
         <!-- 버튼 그룹 -->
         <div class="button-group">
             <!-- 목록으로 돌아가기 -->
-            <a href="boardList.jsp" class="button-link">목록으로 돌아가기</a>
+            <a href="qa_board.do" class="button-link">목록으로 돌아가기</a>
             
             <!-- 수정하기 -->
             <c:if test="${sessionScope.id == qaBoardView.id}">
@@ -89,8 +89,36 @@
 <!-- 댓글 창 -->
 <div class="comment-section">
     <h3>댓글</h3>
-    <form action="addComment.jsp" method="post">
+    <form action="qa_board_view.do" method="post">
+        
         <input type="hidden" name="post_id" value="${qaBoardView.post_id}">
+        <input type="hidden" name="id" value="${sessionScope.id}">
+
+        
+        <textarea name="comment" rows="4" style="width: 100%;" placeholder="댓글을 입력하세요..."></textarea>
+        <button type="submit" class="button-link" style="margin-top: 10px;">댓글 달기</button>
+    </form>
+    
+    <!-- 댓글 리스트 -->
+    <div class="comment-list">
+        <c:forEach var="comment" items="${commentList}">
+            <div class="comment-item" style="border-top: 1px solid #ddd; padding: 10px 0;">
+                <div class="comment-meta" style="font-size: 14px; color: #777;">
+                    작성자: ${comment.id} | 작성일: ${comment.post_date}
+                </div>
+                <div class="comment-content" style="font-size: 16px; color: #555; margin-top: 5px;">
+                    ${comment.content}
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+</div>
+<div class="comment-section">
+    <h3>댓글</h3>
+    <form action="comment_write.do" method="post">
+        <input type="hidden" name="post_id" value="${qaBoardView.post_id}">
+        <input type="hidden" name="id" value="${sessionScope.id}">
+
         <textarea name="comment" rows="4" style="width: 100%;" placeholder="댓글을 입력하세요..."></textarea>
         <button type="submit" class="button-link" style="margin-top: 10px;">댓글 달기</button>
     </form>

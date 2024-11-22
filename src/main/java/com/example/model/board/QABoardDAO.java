@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.model.JDBConnect;
+import com.example.model.comment.CommentDTO;
 
 import jakarta.servlet.ServletContext;
 
@@ -105,7 +106,7 @@ public class QABoardDAO extends JDBConnect{
    
      // 게시글 목록을 가져오는 메서드
      public List<QABoardDTO> getQABoardList() {
-        List<QABoardDTO> boardList = new ArrayList<>();
+        List<QABoardDTO> qaBoardList = new ArrayList<>();
         /* 열 목록
          * POST_ID,   TITLE, CONTENT, ID,  POST_DATE, VISIT_COUNT, LIKE_COUNT, UPDATED_AT //
          * 게시물순서 , 제목 , 내용 ,  아디,   작성일 ,    조회수 ,      좋아요수 , 수정일
@@ -124,7 +125,7 @@ public class QABoardDAO extends JDBConnect{
                 dto.setVisit_count(rs.getInt("VISIT_COUNT")); // 조회수 설정
                 dto.setLike_count(rs.getInt("LIKE_COUNT")); // 좋아요 수 설정
                 dto.setUpdated_at(rs.getDate("UPDATED_AT")); // 수정일 설정
-                boardList.add(dto); // 리스트에 추가
+                qaBoardList.add(dto); // 리스트에 추가
 
                 
               
@@ -147,7 +148,7 @@ public class QABoardDAO extends JDBConnect{
             e.printStackTrace();
             System.out.println("General error - QABoardDAO - getQABoardList");
         }
-        return boardList; // 게시글 목록 반환
+        return qaBoardList; // 게시글 목록 반환
     }
 
 
@@ -207,5 +208,9 @@ public class QABoardDAO extends JDBConnect{
             e.printStackTrace();
         }
         return result;
+    }
+    public boolean writeComment(CommentDTO cdto) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'writeComment'");
     }
 }

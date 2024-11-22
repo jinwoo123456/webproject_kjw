@@ -6,6 +6,8 @@ import java.sql.Date;
 
 import com.example.model.board.QABoardDAO;
 import com.example.model.board.QABoardDTO;
+import com.example.model.comment.CommentDAO;
+import com.example.model.comment.CommentDTO;
 import com.example.utils.JSFunction;
 
 import jakarta.servlet.ServletException;
@@ -74,8 +76,31 @@ public class QABoardWriteServlet extends HttpServlet{
         }
 
 
-	}
+		//======================================댓글영역============================================
+		
+			
+			//여기 수정하면됌.
+			req.setCharacterEncoding("UTF-8");
 	
+	
+			String postId = req.getParameter("post_id");
+			String comment = req.getParameter("comment");
+			String userId = (String) req.getSession().getAttribute("id");
+			CommentDAO cdao = new CommentDAO(getServletContext());
+			CommentDTO cdto = new CommentDTO();
+			dto.setPost_id(Integer.parseInt(postId));
+			dto.setContent(comment);
+			dto.setId(userId);
+	
+			boolean cresult = dao.writeComment(cdto);
+			if (cresult) {
+				resp.sendRedirect("comment_list.do?post_id=" + postId);
+			} else {
+				req.setAttribute("error", "Failed to write comment.");
+				req.getRequestDispatcher("/views/qa_board_view.jsp").forward(req, resp);
+			}
+	}
+    
 	
 
 }

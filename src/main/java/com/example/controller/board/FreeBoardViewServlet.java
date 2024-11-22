@@ -1,9 +1,12 @@
 package com.example.controller.board;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.example.model.board.FreeBoardDAO;
 import com.example.model.board.FreeBoardDTO;
+import com.example.model.comment.CommentDAO;
+import com.example.model.comment.CommentDTO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,6 +27,8 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
     //
 
     FreeBoardDAO dao = new FreeBoardDAO(getServletContext());
+    //댓글작업
+    CommentDAO cdao = new CommentDAO(getServletContext());
     /* "http://localhost:8980/WebProject_KJW/views/free_board_view.do?postId=22"
      * 이 주소값에서 postId=22 << 22부분 가져오기*/
     String postIdQueryString = req.getParameter("postId");
@@ -36,7 +41,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
      * post_id를 사용하여 게시물의 세부 정보를 가져온다.
      */
     FreeBoardDTO freeBoardView = dao.getFreeBoardView(postId);
-
+     List<CommentDTO> commentList = cdao.getCommentList(postId,postId);
 
     //게시물 데이터를 요청 속성에 추가
     req.setAttribute("freeBoardView", freeBoardView);
@@ -45,6 +50,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
     req.getRequestDispatcher("/views/free_board_view.jsp").forward(req, resp);
 
 }
+
 
     
 }

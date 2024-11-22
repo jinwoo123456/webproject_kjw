@@ -141,7 +141,7 @@ pageEncoding="UTF-8"%>
    <div class="container">
     
     <div class="box forum">
-        <c:forEach var="qaboard" items="${qaBoardList}">
+        <c:forEach var="qaBoard" items="${qaBoardList}">
             <article class="media">
                 <div class="media-left">
                     <figure class="image avatar is-64x64">
@@ -156,11 +156,11 @@ pageEncoding="UTF-8"%>
                                     <i class="mdi mdi-heart-outline"></i>
                                 </span>
                             </a>
-                            <span>${qaboard.like_count}</span>
+                            <span>${qaBoard.like_count}</span>
                         </div>
                         <p class="text-content">
-                            <a href="qa_board_view.do?postId=${qaboard.post_id}">
-                                ${qaboard.title}
+                            <a href="qa_board_view.do?postId=${qaBoard.post_id}">
+                                ${qaBoard.title}
                                 <span class="solved" title="Solved">
                                     <i class="mdi mdi-checkbox-marked-circle"></i>
                                 </span>
@@ -174,7 +174,7 @@ pageEncoding="UTF-8"%>
                         <p class="info-content">
                             <a>
                                 <i class="mdi mdi-eye-outline"></i>
-                                <small>${qaboard.visit_count}</small>
+                                <small>${qaBoard.visit_count}</small>
                             </a>
                             <a>
                                 <i class="mdi mdi-comment-text-multiple-outline"></i>

@@ -53,21 +53,43 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
      */
 
     QABoardDTO qaBoardView = dao.getQABoardView(postId);
-    //게시물 상세정보 밑에 있을 댓글 리스트
-    List<CommentDTO> commentList = cdao.getCommentList(postId);
+
+
+    //게시물 상세정보 밑에 있을 댓글 리스트 (qaboard postid와 댓글 post id 비교)
+    List<CommentDTO> commentList = cdao.getCommentList(postId,postId);
 
     
    //CommentDTO commentview = dao.getCommentDTO(postId);
 
 
     //게시물 데이터를 요청 속성에 추가
-    req.setAttribute("freeBoardView", qaBoardView);
+    req.setAttribute("qaBoardView", qaBoardView);
     //댓글 데이터 요청속성에 추가
     req.setAttribute("commentList", commentList);
 
     //JSP 페이지로 포워드
     req.getRequestDispatcher("/views/qa_board_view.jsp").forward(req, resp);
 
+    /*//여기 수정하면됌.
+        req.setCharacterEncoding("UTF-8");
+
+
+        String postId = req.getParameter("post_id");
+        String comment = req.getParameter("comment");
+        String userId = (String) req.getSession().getAttribute("id");
+        CommentDAO dao = new CommentDAO(getServletContext());
+        CommentDTO dto = new CommentDTO();
+        dto.setPost_id(Integer.parseInt(postId));
+        dto.setContent(comment);
+        dto.setId(userId);
+
+        boolean result = dao.writeComment(dto);
+        if (result) {
+            resp.sendRedirect("comment_list.do?post_id=" + postId);
+        } else {
+            req.setAttribute("error", "Failed to write comment.");
+            req.getRequestDispatcher("/views/qa_board_view.jsp").forward(req, resp);
+        } */
 }
 
     
