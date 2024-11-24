@@ -27,7 +27,7 @@ public class QABoardDAO extends JDBConnect{
         //게시물 정보 가져오는 메서드
         public QABoardDTO getQABoardDTO(int postId) {
             QABoardDTO dto = new QABoardDTO();
-            String query = "SELECT * FROM FREE_BOARD WHERE POST_ID = ?"; // SQL 쿼리문 정의, 수정된 부분
+            String query = "SELECT * FROM QA_BOARD WHERE POST_ID = ?"; // SQL 쿼리문 정의, 수정된 부분
             try {
                 psmt = con.prepareStatement(query); // PreparedStatement 객체 생성
                 psmt.setInt(1, postId); // 첫 번째 매개변수에 postId 설정
@@ -60,7 +60,7 @@ public class QABoardDAO extends JDBConnect{
 
     // 조회수 증가 메서드
     public void updateVisitCount(int postId) {
-        String query = "UPDATE FREE_BOARD SET VISIT_COUNT = VISIT_COUNT + 1 WHERE POST_ID = ?"; // SQL 쿼리문 정의
+        String query = "UPDATE QA_BOARD SET VISIT_COUNT = VISIT_COUNT + 1 WHERE POST_ID = ?"; // SQL 쿼리문 정의
         try {
             psmt = con.prepareStatement(query);
             psmt.setInt(1, postId);
@@ -79,10 +79,10 @@ public class QABoardDAO extends JDBConnect{
     public int qaBoardWrite(QABoardDTO dto) {
         int result = 0;
         try {
-            String query = "INSERT INTO FREE_BOARD( "
+            String query = "INSERT INTO QA_BOARD( "
                          + " POST_ID, TITLE, CONTENT, ID, POST_DATE, VISIT_COUNT, LIKE_COUNT, UPDATED_AT )"
                          + " VALUES ( "
-                         + " SEQ_FREE_BOARD_NUM.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
+                         + " SEQ_QA_BOARD_NUM.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
              
             psmt = con.prepareStatement(query);
             psmt.setString(1, dto.getTitle());
@@ -110,7 +110,7 @@ public class QABoardDAO extends JDBConnect{
          * POST_ID,   TITLE, CONTENT, ID,  POST_DATE, VISIT_COUNT, LIKE_COUNT, UPDATED_AT //
          * 게시물순서 , 제목 , 내용 ,  아디,   작성일 ,    조회수 ,      좋아요수 , 수정일
          */
-        String query = "SELECT * FROM FREE_BOARD ORDER BY POST_ID DESC"; // SQL 쿼리문 정의
+        String query = "SELECT * FROM QA_BOARD ORDER BY POST_ID DESC"; // SQL 쿼리문 정의
         try {
             psmt = con.prepareStatement(query); // PreparedStatement 객체 생성
             rs = psmt.executeQuery(); // 쿼리 실행 및 결과 반환
@@ -155,7 +155,7 @@ public class QABoardDAO extends JDBConnect{
     //게시물 상세페이지 메서드
     public QABoardDTO getQABoardView(int postId) {
         QABoardDTO dto = new QABoardDTO();
-        String query = "SELECT * FROM FREE_BOARD WHERE POST_ID = ?"; // SQL 쿼리문 정의
+        String query = "SELECT * FROM QA_BOARD WHERE POST_ID = ?"; // SQL 쿼리문 정의
         try {
             psmt = con.prepareStatement(query); // PreparedStatement 객체 생성
             psmt.setInt(1, postId); // 첫 번째 매개변수에 postId 설정
@@ -181,12 +181,12 @@ public class QABoardDAO extends JDBConnect{
         }
         return dto; // QABoardDTO 객체 반환
     }       
-//String query = "UPDATE FREE_BOARD SET TITLE = ?, CONTENT = ?, UPDATED_AT = ? WHERE POST_ID = ?";
+//String query = "UPDATE QA_BOARD SET TITLE = ?, CONTENT = ?, UPDATED_AT = ? WHERE POST_ID = ?";
     //게시물 수정 메서드
     public int qaBoardUpdate(QABoardDTO dto) {
         int result = 0;
         try {
-            String query = "UPDATE FREE_BOARD SET TITLE = ?, CONTENT = ?, UPDATED_AT = ? WHERE POST_ID = ?";
+            String query = "UPDATE QA_BOARD SET TITLE = ?, CONTENT = ?, UPDATED_AT = ? WHERE POST_ID = ?";
             psmt = con.prepareStatement(query);
             psmt.setString(1, dto.getTitle());
             psmt.setString(2, dto.getContent());

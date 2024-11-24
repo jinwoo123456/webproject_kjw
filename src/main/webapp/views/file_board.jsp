@@ -119,7 +119,7 @@ pageEncoding="UTF-8"%>
           <div class="tabs forum">
             <ul>
               <li><a href="../views/free_board.do">자유게시판</a></li>
-              <li><a href="../views/qa_board.jsp">QA게시판</a></li>
+              <li><a href="../views/qa_board.do">QA게시판</a></li>
               <li class="is-active"><a>자료실게시판</a></li>
               <li><a>인기 순위</a></li>
               <button class="tabs_btn">글쓰기</button>

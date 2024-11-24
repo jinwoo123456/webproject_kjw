@@ -48,8 +48,9 @@ public class JoinServlet extends HttpServlet {
 
         int result = dao.join(dto); // 회원가입 처리를 수행하고 결과를 반환받습니다.
         if (result > 0) {
-           JSFunction.alert(resp, "회원가입이 성공적으로 완료되었습니다. 로그인해주세요."); // 회원가입 성공 시 알림창을 띄웁니다.
-            resp.sendRedirect("login.jsp"); // 회원가입 성공 시 로그인 페이지로 리다이렉트합니다.
+            
+            JSFunction.alertLocation(resp, "회원가입이 성공적으로 완료되었습니다. 로그인해주세요.", "login.jsp");
+         
             System.out.println("joinservlet 회원가입 성공");
         } else {
             req.setAttribute("errorMessage", "회원가입에 실패했습니다. 다시 시도해주세요."); // 회원가입 실패 시 에러 메시지를 설정합니다.

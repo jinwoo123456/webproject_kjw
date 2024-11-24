@@ -57,7 +57,7 @@ public class QABoardWriteServlet extends HttpServlet{
         int result = dao.qaBoardWrite(dto); // 회원가입 처리를 수행하고 결과를 반환받습니다.
 
         if (result > 0) {
-			JSFunction.alertLocation(resp, "글이 성공적으로 작성되었습니다.", "../views/file_board.do");
+			JSFunction.alertLocation(resp, "글이 성공적으로 작성되었습니다.", "../views/qa_board.do");
             System.out.println("QABoardWriteServlet   write success");
         } else {
 			JSFunction.alertBack(resp, "글 작성에 실패했습니다. 다시 시도해주세요.");

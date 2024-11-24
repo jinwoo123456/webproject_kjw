@@ -51,8 +51,7 @@ public class LoginServlet extends HttpServlet {
             // 로그인 실패
             JSFunction.alertBack(resp, "아이디 또는 비밀번호가 일치하지 않습니다.");
             req.setAttribute("errorMessage", "아이디 또는 비밀번호가 일치하지 않습니다.");
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
-        }
+            req.getRequestDispatcher("login.jsp").forward(req, resp);      }
     }
 
 

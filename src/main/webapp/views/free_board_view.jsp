@@ -77,7 +77,7 @@
         <!-- 버튼 그룹 -->
         <div class="button-group">
             <!-- 목록으로 돌아가기 -->
-            <a href="boardList.jsp" class="button-link">목록으로 돌아가기</a>
+            <a href="free_board.do" class="button-link">목록으로 돌아가기</a>
             
             <!-- 수정하기 -->
             <c:if test="${sessionScope.id == freeBoardView.id}">

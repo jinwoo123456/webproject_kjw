@@ -1,9 +1,14 @@
 package com.example.controller.board;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.example.model.board.QABoardDAO;
 import com.example.model.board.QABoardDTO;
+import com.example.model.comment.CommentDAO;
+import com.example.model.comment.CommentDTO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,41 +16,42 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-
-
-//자유게시판 보여주기(DB에서 데이터를 가져와서 보여준다.)
-
-@WebServlet("/views/qa_board_view.do") // 서블릿 매핑 추가
+@WebServlet("/views/qa_board_view.do")
 public class QABoardViewServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       
+        String postIdStr = req.getParameter("postId"); // post_id에서 이름 수정.(파라미터값 받기)
+        if (postIdStr == null || postIdStr.isEmpty()) {//http400 뜸 (웹상에서 출력)
+            // post_id가 null이거나 비어있는 경우 예외 처리'
+            System.out.println(postIdStr+"     postidstr");
+            System.out.println("post_id is null or empty");
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid post_id");
+            return;
+        }
 
-     
-@Override
-protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    //
+        try {
+            int postId = Integer.parseInt(postIdStr);
 
-    QABoardDAO dao = new QABoardDAO(getServletContext());
-    /* "http://localhost:8980/WebProject_KJW/views/free_board_view.do?postId=22"
-     * 이 주소값에서 postId=22 << 22부분 가져오기*/
-    String postIdQueryString = req.getParameter("postId");
-    String postIdStr = postIdQueryString.substring(postIdQueryString.indexOf("=") + 1);
-    int postId = Integer.parseInt(postIdStr);
-    System.out.println("Post ID int = : " + postId);
+            // 게시물 정보 로드
+            QABoardDAO dao = new QABoardDAO(getServletContext());
+            QABoardDTO qaBoardView = dao.getQABoardView(postId);
 
-    /**
-     * QABoardDAO 객체를 사용하여 게시물의 세부 정보를 가져온다.
-     * post_id를 사용하여 게시물의 세부 정보를 가져온다.
-     */
-    QABoardDTO freeBoardView = dao.getQABoardView(postId);
+            // 댓글 목록 로드
+            CommentDAO commentDAO = new CommentDAO(getServletContext());
+            List<CommentDTO> commentList = new ArrayList<>();
+            try {
+                commentList = commentDAO.getCommentsByPostId(postId);
+            } catch (SQLException e) {
+                throw new ServletException(e);
+            }
 
-
-    //게시물 데이터를 요청 속성에 추가
-    req.setAttribute("freeBoardView", freeBoardView);
-
-    //JSP 페이지로 포워드
-    req.getRequestDispatcher("/views/free_board_view.jsp").forward(req, resp);
-
+            req.setAttribute("qaBoardView", qaBoardView);
+            req.setAttribute("commentList", commentList);
+            req.getRequestDispatcher("/views/qa_board_view.jsp").forward(req, resp);
+        } catch (NumberFormatException e) {
+            // post_id가 숫자가 아닌 경우 예외 처리
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid post_id format");
+        }
+    }
 }
-
-    
-}
-

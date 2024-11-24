@@ -12,29 +12,21 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-//자유게시판 보여주기(DB에서 데이터를 가져와서 보여준다.)
-@WebServlet("/views/qa_board.do") // 서블릿 매핑 추가
+@WebServlet("/views/qa_board.do")
 public class QABoardListServlet extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //debugging
-        System.out.println("QABoardListViewServlet doGet() 호출");
-
-        // QABoardDAO 객체 생성 (아래 생성자를 멤버변수로 설정)
         QABoardDAO dao = new QABoardDAO(getServletContext());
-        
-        // 게시글 목록 가져오기
-        List<QABoardDTO> freeBoardList = dao.getQABoardList();
+        List<QABoardDTO> qaBoardList = dao.getQABoardList();
 
-        //debuging
+        // 디버깅
         System.out.println("============QABoardListViewServlet 게시물 목록 가져오기 확인.line32========");
-        System.out.println("QABoardListViewServlet   freeBoardList.size() : " + freeBoardList.size());
+        System.out.println("QABoardListViewServlet qaBoardList.size() : " + qaBoardList.size());
 
         // 게시글 목록을 request 객체에 저장
-        req.setAttribute("freeBoardList", freeBoardList);
+        req.setAttribute("qaBoardList", qaBoardList);
 
         // 게시글 목록을 출력할 JSP 페이지로 포워드
-        req.getRequestDispatcher("/views/free_board.jsp").forward(req, resp);
+        req.getRequestDispatcher("/views/qa_board.jsp").forward(req, resp);
     }
 }

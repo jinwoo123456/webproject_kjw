@@ -125,7 +125,7 @@ pageEncoding="UTF-8"%>
               <li class="is-active"><a>QA게시판</a></li>
               <li><a href="../views/file_board.do">자료실게시판</a></li>
               <li><a>인기 순위</a></li>
-              <button class="tabs_btn"><a href="../views/free_board_write.jsp">글쓰기</a></button>
+              <button class="tabs_btn"><a href="../views/qa_board_write.jsp">글쓰기</a></button>
             </ul>
           </div>
 
@@ -137,56 +137,55 @@ pageEncoding="UTF-8"%>
 
 
           <%--===================================== 게시판 글폼================================== --%>
-          
-   <div class="container">
-    
-    <div class="box forum">
-        <c:forEach var="freeboard" items="${qaBoardList}">
-            <article class="media">
-                <div class="media-left">
+          <div class="container">
+            <div class="box forum">
+              <c:forEach var="qaboard" items="${qaBoardList}">
+                <article class="media">
+                  <div class="media-left">
                     <figure class="image avatar is-64x64">
-                        <img src="assets/img/1.png" alt="Image" class="is-rounded" />
+                      <img src="assets/img/1.png" alt="Image" class="is-rounded" />
                     </figure>
-                </div>
-                <div class="media-content">
+                  </div>
+                  <div class="media-content">
                     <div class="content list-forum">
-                        <div class="is-pulled-right has-text-centered">
-                            <a href="#" class="love">
-                                <span>
-                                    <i class="mdi mdi-heart-outline"></i>
-                                </span>
-                            </a>
-                            <span>${qaboard.like_count}</span>
-                        </div>
-                        <p class="text-content">
-                            <a href="qa_board_view.do?postId=${qaboard.post_id}">
-                                ${qaboard.title}
-                                <span class="solved" title="Solved">
-                                    <i class="mdi mdi-checkbox-marked-circle"></i>
-                                </span>
-                            </a>
-                        </p>
-                        <p class="tags-content">
-                            <a class="tag is-rounded is-primary">NuxtJS</a>
-                            <a class="tag is-rounded is-success">VueJS</a>
-                            <a class="tag is-rounded is-warning">JavaScript</a>
-                        </p>
-                        <p class="info-content">
-                            <a>
-                                <i class="mdi mdi-eye-outline"></i>
-                                <small>${qaboard.visit_count}</small>
-                            </a>
-                            <a>
-                                <i class="mdi mdi-comment-text-multiple-outline"></i>
-                                <small>70</small>
-                            </a>
-                        </p>
+                      <div class="is-pulled-right has-text-centered">
+                        <a href="#" class="love">
+                          <span>
+                            <i class="mdi mdi-heart-outline"></i>
+                          </span>
+                        </a>
+                        <span>${qaboard.like_count}</span>
+                        <c:out value="${qaboard.like_count}" />
+                      </div>
+                      <p class="text-content">
+                        <a href="qa_board_view.do?postId=${qaboard.post_id}">
+                          ${qaboard.title}
+                          <span class="solved" title="Solved">
+                            <i class="mdi mdi-checkbox-marked-circle"></i>
+                          </span>
+                        </a>
+                      </p>
+                      <p class="tags-content">
+                        <a class="tag is-rounded is-primary">NuxtJS</a>
+                        <a class="tag is-rounded is-success">VueJS</a>
+                        <a class="tag is-rounded is-warning">JavaScript</a>
+                      </p>
+                      <p class="info-content">
+                        <a>
+                          <i class="mdi mdi-eye-outline"></i>
+                          <small>${qaboard.visit_count}</small>
+                        </a>
+                        <a>
+                          <i class="mdi mdi-comment-text-multiple-outline"></i>
+                          <small>70</small>
+                        </a>
+                      </p>
                     </div>
-                </div>
-            </article>
-        </c:forEach>
-    </div>
-</div>
+                  </div>
+                </article>
+              </c:forEach>
+            </div>
+          </div>
           <%--===================================== 게시판 글폼 끝================================== --%>
 
 

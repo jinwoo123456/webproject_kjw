@@ -53,6 +53,19 @@
         .button-link:hover {
             background-color: #0056b3;
         }
+        .comment-form {
+            margin-top: 30px;
+        }
+        .comment-list {
+            margin-top: 20px;
+        }
+        .comment-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .comment-item p {
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
@@ -77,7 +90,7 @@
         <!-- 버튼 그룹 -->
         <div class="button-group">
             <!-- 목록으로 돌아가기 -->
-            <a href="boardList.jsp" class="button-link">목록으로 돌아가기</a>
+            <a href="qa_board.do" class="button-link">목록으로 돌아가기</a>
             
             <!-- 수정하기 -->
             <c:if test="${sessionScope.id == qaBoardView.id}">
@@ -86,5 +99,25 @@
             
         </div>
     </div>
+ <!-- 댓글 입력 폼 -->
+<div class="comment-form">
+    <h3>댓글 작성</h3>
+    <form action="writeComment.do" method="post">
+        <input type="hidden" name="post_id" value="${qaBoardView.post_id}">
+        <textarea name="content" rows="4" cols="50" required></textarea>
+        <br>
+        <button type="submit">댓글 작성</button>
+    </form>
+</div>
+<!-- 댓글 목록 -->
+<div class="comment-list">
+    <h3>댓글 목록</h3>
+    <c:forEach var="comment" items="${commentList}">
+        <div class="comment-item">
+            <p><strong>${comment.userId}</strong> (${comment.postDate})</p>
+            <p>${comment.content}</p>
+        </div>
+    </c:forEach>
+</div>
 </body>
 </html>
