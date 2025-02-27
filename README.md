@@ -1,6 +1,8 @@
 # webproject-kjw
 
-김진우의 jsp-servlet 웹 프로젝트 연습
+KDT 빅데이터 융합&인공지능 과정 JSP 게시판 만들기 개인 프로젝트
+
+
 
 # Db 정보
 
